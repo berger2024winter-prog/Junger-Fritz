@@ -263,6 +263,8 @@ nav ul li a:hover, nav ul li a.active {
         <div class="form-group"><label>Alter</label><input type="number" id="c-age"></div>
         <div class="form-group"><label>Beruf</label><input type="text" id="c-job"></div>
         <div class="form-group"><label>Wohnort / Lager</label><input type="text" id="c-home"></div>
+        <div class="form-group"><label>Telegrammnummer</label><input type="text" id="c-telegram" placeholder="z.B. BW-1234"></div>
+        
         <div style="display:flex; gap:15px; margin-top:25px;">
             <button class="btn btn-primary" id="btn-save-citizen">Eintragen</button>
             <button class="btn" style="color:var(--accent);" onclick="closeModal('modal-citizen')">Abbrechen</button>
@@ -326,6 +328,7 @@ nav ul li a:hover, nav ul li a.active {
       card.innerHTML = `
         <div class="card-title">${c.name}</div>
         <div style="font-size:15px;">
+            <strong>Telegramm:</strong> ${c.telegram || 'Keine Angabe'}<br>
             <strong>Alter:</strong> ${c.age}<br>
             <strong>Beruf:</strong> ${c.job}<br>
             <strong>Ort:</strong> ${c.home}
@@ -344,7 +347,8 @@ nav ul li a:hover, nav ul li a.active {
       name: name,
       age: document.getElementById('c-age').value,
       job: document.getElementById('c-job').value,
-      home: document.getElementById('c-home').value
+      home: document.getElementById('c-home').value,
+      telegram: document.getElementById('c-telegram').value // Speichern der Nummer
     });
     closeModal('modal-citizen');
     document.querySelectorAll('#modal-citizen input').forEach(i => i.value = '');
