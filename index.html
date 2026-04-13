@@ -14,12 +14,12 @@
    DESIGN & PALETTE (Blackwater Elegant Western)
    ============================================================ */
 :root {
-  --paper:       #f2e6d0; /* Altes Pergament */
+  --paper:       #f2e6d0; 
   --paper-dark:  #e0d2b4;
-  --ink:         #2a1b0a; /* Fast Schwarz (Tinte) */
-  --wood-dark:   #2b1a0f; /* Dunkles Holz für den Hintergrund */
-  --gold:        #c49a5e; /* Goldene Akzente */
-  --accent:      #8c2d1f; /* Dezentes Weinrot für Details */
+  --ink:         #2a1b0a; 
+  --wood-dark:   #2b1a0f; 
+  --gold:        #c49a5e; 
+  --accent:      #8c2d1f; 
   --font-display: 'Playfair Display', serif;
   --font-body:    'Crimson Text', serif;
 }
@@ -28,7 +28,6 @@
 
 body {
   background-color: var(--wood-dark);
-  /* Ein dezentes Muster für den Hintergrund (Holz/Stoff-Struktur) */
   background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
   color: var(--ink);
   font-family: var(--font-body);
@@ -37,7 +36,6 @@ body {
   min-height: 100vh;
 }
 
-/* Header */
 header {
   background-color: rgba(0, 0, 0, 0.4);
   border-bottom: 2px solid var(--gold);
@@ -64,7 +62,6 @@ header h1 span {
   opacity: 0.8;
 }
 
-/* Navigation */
 nav {
   background-color: #1a0f08;
   border-bottom: 1px solid var(--gold);
@@ -98,7 +95,6 @@ nav ul li a:hover, nav ul li a.active {
   background: rgba(255,255,255,0.05);
 }
 
-/* Content Area */
 .page-wrapper {
   max-width: 900px;
   margin: 0 auto;
@@ -126,7 +122,6 @@ nav ul li a:hover, nav ul li a.active {
   text-transform: uppercase;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -151,7 +146,6 @@ nav ul li a:hover, nav ul li a.active {
   color: var(--gold);
 }
 
-/* Paper Cards */
 .paper {
   background-color: var(--paper);
   background-image: url("https://www.transparenttextures.com/patterns/parchment.png");
@@ -180,7 +174,6 @@ nav ul li a:hover, nav ul li a.active {
   padding-bottom: 5px;
 }
 
-/* Modals */
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.85);
   display: none; align-items: center; justify-content: center; z-index: 1000;
@@ -232,7 +225,21 @@ nav ul li a:hover, nav ul li a.active {
     <div class="section-header"><h2 class="section-title">Terminkalender</h2></div>
     <div class="paper" style="margin-bottom: 40px;">
         <h3 style="margin-bottom:15px; font-family:var(--font-display);">Neuen Termin ansetzen</h3>
-        <div class="form-group"><label>Treffpunkt</label><select id="appt-location"><option>Blackwater</option><option>Valentine</option><option>Saint Denis</option><option>Rhodes</option><option>Strawberry</option></select></div>
+        <div class="form-group">
+            <label>Treffpunkt</label>
+            <select id="appt-location">
+                <option>Blackwater</option>
+                <option>Valentine</option>
+                <option>Saint Denis</option>
+                <option>Rhodes</option>
+                <option>Strawberry</option>
+                <option>Armadillo</option>
+                <option>Van Horn</option>
+                <option>Annesburg</option>
+                <option>Tumbleweed</option>
+                <option>Colter</option>
+            </select>
+        </div>
         <div class="form-group"><label>Datum & Uhrzeit</label><input type="datetime-local" id="appt-datetime"></div>
         <div class="form-group"><label>Anlass</label><textarea id="appt-note" placeholder="Grund des Termins..."></textarea></div>
         <button class="btn btn-primary" id="btn-add-appt">Termin im Kalender vermerken</button>
@@ -294,7 +301,6 @@ nav ul li a:hover, nav ul li a.active {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // NAVIGATION
   const navLinks = document.querySelectorAll('.nav-link');
   const views = document.querySelectorAll('.view');
   navLinks.forEach(link => {
@@ -309,7 +315,6 @@ nav ul li a:hover, nav ul li a.active {
 
   window.closeModal = (id) => document.getElementById(id).classList.remove('open');
 
-  // BÜRGER
   const citizenCol = collection(db, "citizens");
   onSnapshot(citizenCol, (snapshot) => {
     const grid = document.getElementById('citizen-grid');
@@ -345,7 +350,6 @@ nav ul li a:hover, nav ul li a.active {
     document.querySelectorAll('#modal-citizen input').forEach(i => i.value = '');
   };
 
-  // TERMINE
   const apptCol = collection(db, "appointments");
   onSnapshot(query(apptCol, orderBy("date")), (snapshot) => {
     const list = document.getElementById('list-appointments');
@@ -375,7 +379,6 @@ nav ul li a:hover, nav ul li a.active {
     document.getElementById('appt-note').value = '';
   };
 
-  // GEWERBE
   const bizCol = collection(db, "businesses");
   onSnapshot(bizCol, (snapshot) => {
     const grid = document.getElementById('business-grid');
@@ -409,7 +412,6 @@ nav ul li a:hover, nav ul li a.active {
     document.querySelectorAll('#modal-business input').forEach(i => i.value = '');
   };
 
-  // LÖSCHEN
   window.delDoc = async (coll, id) => {
     if(confirm("Möchten Sie diesen Eintrag wirklich dauerhaft aus den Akten löschen?")) {
         await deleteDoc(doc(db, coll, id));
