@@ -1,426 +1,248 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>Blackwater — Bürgeramt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zum Jungen Fritz | Gast- & Logierhaus Rheinsberg</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --vintage-brown: #3d2b1f; 
+            --vintage-gold: #b38b4d; 
+            --parchment: #fdfaf1; 
+            --border-soft: #dcd0c0;
+        }
+        
+        body { 
+            font-family: 'Lora', serif; 
+            color: var(--vintage-brown); 
+            background-color: var(--parchment); 
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, .navbar-brand { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--vintage-brown); 
+            font-weight: 700;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+        .top-info { 
+            background: var(--vintage-brown); 
+            color: #f1ede3; 
+            padding: 12px 0; 
+            font-size: 0.95rem; 
+            border-bottom: 4px solid var(--vintage-gold);
+        }
+        .top-info a { color: #f1ede3; text-decoration: none; border-bottom: 1px dotted var(--vintage-gold); }
 
-<style>
-/* ============================================================
-   DESIGN & PALETTE (Blackwater Elegant Western)
-   ============================================================ */
-:root {
-  --paper:       #f2e6d0; 
-  --paper-dark:  #e0d2b4;
-  --ink:         #2a1b0a; 
-  --wood-dark:   #2b1a0f; 
-  --gold:        #c49a5e; 
-  --accent:      #8c2d1f; 
-  --font-display: 'Playfair Display', serif;
-  --font-body:    'Crimson Text', serif;
-}
+        .navbar { background: #fffcf5 !important; border-bottom: 1px solid var(--border-soft); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-link { font-style: italic; color: var(--vintage-brown) !important; margin: 0 10px; }
+        .nav-link:hover { color: var(--vintage-gold) !important; }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        .carousel-item { 
+            height: 65vh; 
+            min-height: 450px; 
+            background-size: cover; 
+            background-position: center; 
+            filter: sepia(0.2) contrast(1.05) brightness(0.9);
+        }
+        .carousel-caption { 
+            background: rgba(61, 43, 31, 0.8); 
+            border: 2px solid var(--vintage-gold); 
+            padding: 40px; 
+            bottom: 20%;
+            border-radius: 2px;
+        }
+        .carousel-caption h1 { color: #fdfaf1; text-transform: uppercase; letter-spacing: 2px; }
 
-body {
-  background-color: var(--wood-dark);
-  background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.6;
-  min-height: 100vh;
-}
+        .section-padding { padding: 100px 0; }
+        .img-vintage-frame { 
+            border: 10px solid #fff; 
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15); 
+            filter: sepia(0.1);
+        }
 
-header {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-bottom: 2px solid var(--gold);
-  padding: 40px 20px;
-  text-align: center;
-}
+        .opening-hours { 
+            background: #fff; 
+            padding: 40px; 
+            border: 1px solid var(--border-soft); 
+            position: relative;
+        }
+        .opening-hours::after {
+            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px dashed var(--border-soft); pointer-events: none;
+        }
+        .oh-list { list-style: none; padding: 0; margin: 0; }
+        .oh-list li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-weight: 500; }
 
-header h1 {
-  font-family: var(--font-display);
-  font-size: clamp(30px, 8vw, 60px);
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  text-shadow: 3px 3px 5px rgba(0,0,0,0.8);
-}
+        .btn-vintage { 
+            background: var(--vintage-gold); 
+            color: white; 
+            border: none; 
+            padding: 12px 35px; 
+            font-family: 'Playfair Display', serif; 
+            font-weight: 700; 
+            text-decoration: none; 
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-vintage:hover { background: var(--vintage-brown); color: #fff; transform: translateY(-2px); }
 
-header h1 span {
-  display: block;
-  font-size: 0.35em;
-  letter-spacing: 0.3em;
-  color: #fff;
-  margin-top: 10px;
-  font-weight: 400;
-  opacity: 0.8;
-}
+        .activity-card { 
+            background: #fff; 
+            border: 1px solid var(--border-soft); 
+            padding: 35px; 
+            height: 100%; 
+            transition: 0.3s;
+        }
+        .activity-card:hover { border-color: var(--vintage-gold); transform: translateY(-5px); }
+        .link-classic { color: var(--vintage-gold); font-weight: 700; text-decoration: none; font-style: italic; }
 
-nav {
-  background-color: #1a0f08;
-  border-bottom: 1px solid var(--gold);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-nav ul li a {
-  display: block;
-  padding: 15px 25px;
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--paper-dark);
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 0.3s;
-}
-
-nav ul li a:hover, nav ul li a.active {
-  color: var(--gold);
-  background: rgba(255,255,255,0.05);
-}
-
-.page-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.view { display: none; }
-.view.active { display: block; animation: fadeIn 0.5s ease; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 10px;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: 28px;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 20px;
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border: 1px solid var(--gold);
-  cursor: pointer;
-  transition: all 0.3s;
-  background: transparent;
-}
-
-.btn-primary {
-  background-color: var(--gold);
-  color: var(--wood-dark);
-}
-
-.btn-primary:hover {
-  background-color: transparent;
-  color: var(--gold);
-}
-
-.paper {
-  background-color: var(--paper);
-  background-image: url("https://www.transparenttextures.com/patterns/parchment.png");
-  border: 1px solid #c0b090;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.3), inset 0 0 50px rgba(0,0,0,0.05);
-  padding: 25px;
-  position: relative;
-}
-
-.data-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
-}
-
-.data-card {
-  transition: transform 0.2s;
-}
-.data-card:hover { transform: scale(1.02); }
-
-.card-title {
-  font-family: var(--font-display);
-  font-size: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-}
-
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-  display: none; align-items: center; justify-content: center; z-index: 1000;
-  backdrop-filter: blur(3px);
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: var(--paper);
-  background-image: url("https://www.transparenttextures.com/patterns/parchment.png");
-  padding: 40px;
-  width: 90%;
-  max-width: 500px;
-  border: 3px double var(--gold);
-}
-
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; font-family: var(--font-display); font-size: 12px; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
-.form-group input, .form-group select, .form-group textarea {
-  width: 100%; padding: 12px; border: 1px solid #c0b090; background: rgba(255,255,255,0.3); font-family: var(--font-body); font-size: 16px;
-}
-
-.appt-item { margin-bottom: 15px; border-left: 5px solid var(--accent); }
-</style>
+        footer { background: var(--vintage-brown); color: #dcd0c0; padding: 80px 0 40px; }
+        footer h3 { color: var(--vintage-gold); }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>Blackwater<span>Bürgeramt</span></h1>
-</header>
+<div class="top-info">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+        <div>
+            <span class="me-4">Adresse: <a href="https://www.google.com/maps?q=Schloßstraße+8,+16831+Rheinsberg" target="_blank">Schloßstraße 8, 16831 Rheinsberg</a></span>
+            <span>Telefon: 033931 2168</span>
+        </div>
+        <div class="mt-2 mt-md-0">
+            <a href="https://junger-fritz.holiduhost.com/" target="_blank" class="btn-vintage" style="padding: 6px 20px; font-size: 0.85rem;">Zimmer Reservieren</a>
+        </div>
+    </div>
+</div>
 
-<nav>
-  <ul>
-    <li><a href="#" class="nav-link active" data-view="citizens">Einwohner</a></li>
-    <li><a href="#" class="nav-link" data-view="appointments">Termine</a></li>
-    <li><a href="#" class="nav-link" data-view="businesses">Gewerbe</a></li>
-  </ul>
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Zum Jungen Fritz</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#gaststube">Gastlichkeit</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pension">Pension</a></li>
+                <li class="nav-item"><a class="nav-link" href="#unternehmungen">Umgebung</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
-<div class="page-wrapper">
-  <section id="view-citizens" class="view active">
-    <div class="section-header">
-      <h2 class="section-title">Einwohnerregister</h2>
-      <button class="btn btn-primary" id="btn-add-citizen">+ Bürger eintragen</button>
-    </div>
-    <div class="data-grid" id="citizen-grid"></div>
-  </section>
-
-  <section id="view-appointments" class="view">
-    <div class="section-header"><h2 class="section-title">Terminkalender</h2></div>
-    <div class="paper" style="margin-bottom: 40px;">
-        <h3 style="margin-bottom:15px; font-family:var(--font-display);">Neuen Termin ansetzen</h3>
-        <div class="form-group">
-            <label>Treffpunkt</label>
-            <select id="appt-location">
-                <option>Blackwater</option>
-                <option>Valentine</option>
-                <option>Saint Denis</option>
-                <option>Rhodes</option>
-                <option>Strawberry</option>
-                <option>Armadillo</option>
-                <option>Van Horn</option>
-                <option>Annesburg</option>
-                <option>Tumbleweed</option>
-                <option>Colter</option>
-            </select>
+<div id="vintageHero" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('images/fassade.png');">
+            <div class="carousel-caption">
+                <h1>Willkommen</h1>
+                <p>Traditionelle Gastlichkeit im Herzen Rheinsbergs</p>
+            </div>
         </div>
-        <div class="form-group"><label>Datum & Uhrzeit</label><input type="datetime-local" id="appt-datetime"></div>
-        <div class="form-group"><label>Anlass</label><textarea id="appt-note" placeholder="Grund des Termins..."></textarea></div>
-        <button class="btn btn-primary" id="btn-add-appt">Termin im Kalender vermerken</button>
+        <div class="carousel-item" style="background-image: url('images/schloss.png');">
+            <div class="carousel-caption">
+                <h2>Kultur erleben</h2>
+                <p>Direkt am historischen Schlosspark gelegen</p>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('images/gastraum.png');">
+            <div class="carousel-caption">
+                <h2>Preußische Küche</h2>
+                <p>Ehrliche Rezepte in historischem Ambiente</p>
+            </div>
+        </div>
     </div>
-    <div id="list-appointments"></div>
-  </section>
-
-  <section id="view-businesses" class="view">
-    <div class="section-header">
-        <h2 class="section-title">Gewerbe-Verzeichnis</h2>
-        <button class="btn btn-primary" id="btn-add-business">+ Gewerbe anmelden</button>
-    </div>
-    <div class="data-grid" id="business-grid"></div>
-  </section>
 </div>
 
-<div class="modal-overlay" id="modal-citizen">
-    <div class="modal">
-        <h3 class="section-title" style="margin-bottom: 20px;">Neue Personenakte</h3>
-        <div class="form-group"><label>Vollständiger Name</label><input type="text" id="c-name"></div>
-        <div class="form-group"><label>Alter</label><input type="number" id="c-age"></div>
-        <div class="form-group"><label>Beruf</label><input type="text" id="c-job"></div>
-        <div class="form-group"><label>Wohnort / Lager</label><input type="text" id="c-home"></div>
-        <div class="form-group"><label>Telegrammnummer</label><input type="text" id="c-telegram" placeholder="z.B. BW-1234"></div>
+<section id="gaststube" class="section-padding container">
+    <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+            <h2 class="mb-4 italic">Essen & Trinken</h2>
+            <p>Genießen Sie brandenburgische Spezialitäten in unserer rustikalen Gaststube. Wir bewahren die Rezepte, die unsere Region seit Generationen prägen.</p>
+            
+            <div class="opening-hours mt-5">
+                <h4 class="text-center mb-4">Öffnungszeiten</h4>
+                <ul class="oh-list">
+                    <li><span>Freitag</span> <span>17:00 – 20:00 Uhr</span></li>
+                    <li><span>Samstag</span> <span>11:00 – 14:00 & 17:00 – 20:00 Uhr</span></li>
+                    <li><span>Sonntag</span> <span>11:00 – 14:00 Uhr</span></li>
+                    <li><span>Montag</span> <span>17:00 – 20:00 Uhr</span></li>
+                </ul>
+                <p class="text-center mt-3 small italic">Dienstag bis Donnerstag Ruhetag</p>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <img src="images/gastraum_fenster.png" alt="Gastraum" class="img-fluid img-vintage-frame">
+        </div>
+    </div>
+</section>
+
+<section id="pension" class="section-padding" style="background-color: #f3ede1;">
+    <div class="container text-center">
+        <h2 class="mb-4">Logieren beim Jungen Fritz</h2>
+        <p class="mb-5 mx-auto" style="max-width: 700px;">Unsere behaglichen Zimmer bieten Ihnen die ideale Ruheoase nach einem Tag voller Entdeckungen in Rheinsberg.</p>
         
-        <div style="display:flex; gap:15px; margin-top:25px;">
-            <button class="btn btn-primary" id="btn-save-citizen">Eintragen</button>
-            <button class="btn" style="color:var(--accent);" onclick="closeModal('modal-citizen')">Abbrechen</button>
+        <div class="row g-5 align-items-center mt-2 text-start">
+            <div class="col-lg-5 text-center">
+                <img src="images/zimmer.png" alt="Zimmer" class="img-fluid img-vintage-frame">
+            </div>
+            <div class="col-lg-7 ps-lg-5">
+                <a href="https://junger-fritz.holiduhost.com/" target="_blank" class="btn-vintage mb-5">Verfügbarkeit & Buchung</a>
+                
+                <div class="p-4 bg-white border">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="images/bett_bike_logo.png" alt="Bett+Bike" style="height: 45px; filter: grayscale(1);" class="me-3">
+                        <h4 class="m-0">Biker & Radfahrer</h4>
+                    </div>
+                    <p>Als zertifizierter Bett+Bike Betrieb bieten wir Ihnen sichere Unterstellmöglichkeiten und besten Service für Ihre Tour.</p>
+                    <a href="https://www.bettundbike.de/unterkunft/zum-jungen-fritz-10022378" target="_blank" class="link-classic">Zum Profil von Bett+Bike →</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="modal-overlay" id="modal-business">
-    <div class="modal">
-        <h3 class="section-title" style="margin-bottom: 20px;">Gewerbeanmeldung</h3>
-        <div class="form-group"><label>Name des Geschäfts</label><input type="text" id="b-name"></div>
-        <div class="form-group"><label>Inhaber</label><input type="text" id="b-owner"></div>
-        <div class="form-group"><label>Anschrift</label><input type="text" id="b-address"></div>
-        <div class="form-group"><label>Art des Gewerbes</label><input type="text" id="b-type"></div>
-        <div style="display:flex; gap:15px; margin-top:25px;">
-            <button class="btn btn-primary" id="btn-save-business">Gewerbe anmelden</button>
-            <button class="btn" style="color:var(--accent);" onclick="closeModal('modal-business')">Abbrechen</button>
+<section id="unternehmungen" class="section-padding container">
+    <div class="text-center mb-5">
+        <h2>Rheinsberg Entdecken</h2>
+        <p class="italic">Kultur und Natur direkt vor unserer Haustür</p>
+    </div>
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="activity-card">
+                <h3>Kultur</h3>
+                <p>Schloss Rheinsberg und das Kurt-Tucholsky-Museum laden zu einer Reise in die Geschichte ein.</p>
+                <a href="https://www.spsg.de/schloesser-gaerten/objekt/schloss-rheinsberg/" target="_blank" class="link-classic">Schloss Rheinsberg →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="activity-card">
+                <h3>Natur</h3>
+                <p>Besuchen Sie den Tierpark Kunsterspring und erleben Sie heimische Wildtiere in natürlicher Umgebung.</p>
+                <a href="https://tierpark-kunsterspring.de/" target="_blank" class="link-classic">Tierpark besuchen →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="activity-card">
+                <h3>Wasser</h3>
+                <p>Genießen Sie eine Dampferfahrt oder Kanutour auf dem spiegelglatten Grienericksee.</p>
+                <a href="https://www.rheinsberg.de/tourismus/aktiv-in-der-natur/auf-dem-wasser.html" target="_blank" class="link-classic">Wasser-Aktivitäten →</a>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, query, orderBy } 
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAJ_OvlQ_K-rMgJl-7mhE0Zp2nnIIvsPVc",
-    authDomain: "stadt-blackwater.firebaseapp.com",
-    projectId: "stadt-blackwater",
-    storageBucket: "stadt-blackwater.firebasestorage.app",
-    messagingSenderId: "377493157689",
-    appId: "1:377493157689:web:1a80bbc49a9018683a1ae8"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const navLinks = document.querySelectorAll('.nav-link');
-  const views = document.querySelectorAll('.view');
-  navLinks.forEach(link => {
-    link.onclick = (e) => {
-      e.preventDefault();
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      views.forEach(v => v.classList.remove('active'));
-      document.getElementById('view-' + link.dataset.view).classList.add('active');
-    };
-  });
-
-  window.closeModal = (id) => document.getElementById(id).classList.remove('open');
-
-  const citizenCol = collection(db, "citizens");
-  onSnapshot(citizenCol, (snapshot) => {
-    const grid = document.getElementById('citizen-grid');
-    grid.innerHTML = '';
-    snapshot.forEach(docSnap => {
-      const c = docSnap.data();
-      const card = document.createElement('div');
-      card.className = 'data-card paper';
-      card.innerHTML = `
-        <div class="card-title">${c.name}</div>
-        <div style="font-size:15px;">
-            <strong>Telegramm:</strong> ${c.telegram || 'Keine Angabe'}<br>
-            <strong>Alter:</strong> ${c.age}<br>
-            <strong>Beruf:</strong> ${c.job}<br>
-            <strong>Ort:</strong> ${c.home}
+<footer>
+    <div class="container text-center">
+        <h3>Zum Jungen Fritz</h3>
+        <p>Familie Rottke | Schloßstraße 8 | 16831 Rheinsberg</p>
+        <p>Telefon: 033931 2168 | E-Mail: kontakt@junger-fritz.de</p>
+        <div class="mt-5 small">
+            <a href="#" style="color: #dcd0c0; text-decoration: none; margin: 0 15px;">Impressum</a>
+            <a href="#" style="color: #dcd0c0; text-decoration: none; margin: 0 15px;">Datenschutz</a>
         </div>
-        <button onclick="window.delDoc('citizens','${docSnap.id}')" style="background:none; border:none; color:#8c2d1f; cursor:pointer; font-size:11px; margin-top:15px; text-transform:uppercase;">[ Akte schließen ]</button>
-      `;
-      grid.appendChild(card);
-    });
-  });
+        <p class="mt-4 opacity-50">© 2026 Alle Rechte vorbehalten</p>
+    </div>
+</footer>
 
-  document.getElementById('btn-add-citizen').onclick = () => document.getElementById('modal-citizen').classList.add('open');
-  document.getElementById('btn-save-citizen').onclick = async () => {
-    const name = document.getElementById('c-name').value;
-    if(!name) return;
-    await addDoc(citizenCol, {
-      name: name,
-      age: document.getElementById('c-age').value,
-      job: document.getElementById('c-job').value,
-      home: document.getElementById('c-home').value,
-      telegram: document.getElementById('c-telegram').value // Speichern der Nummer
-    });
-    closeModal('modal-citizen');
-    document.querySelectorAll('#modal-citizen input').forEach(i => i.value = '');
-  };
-
-  const apptCol = collection(db, "appointments");
-  onSnapshot(query(apptCol, orderBy("date")), (snapshot) => {
-    const list = document.getElementById('list-appointments');
-    list.innerHTML = '';
-    snapshot.forEach(docSnap => {
-      const a = docSnap.data();
-      const item = document.createElement('div');
-      item.className = 'appt-item paper';
-      item.innerHTML = `
-        <div style="font-family:var(--font-display); font-size:18px; font-weight:bold;">${a.location}</div>
-        <div style="font-style:italic; font-size:14px; color:#8c2d1f;">${new Date(a.date).toLocaleString('de-DE')} Uhr</div>
-        <div style="margin-top:8px;">${a.note}</div>
-        <button onclick="window.delDoc('appointments','${docSnap.id}')" style="position:absolute; top:10px; right:15px; border:none; background:none; font-size:20px; cursor:pointer;">&times;</button>
-      `;
-      list.appendChild(item);
-    });
-  });
-
-  document.getElementById('btn-add-appt').onclick = async () => {
-    const d = document.getElementById('appt-datetime').value;
-    if(!d) return alert("Bitte Datum wählen");
-    await addDoc(apptCol, {
-      location: document.getElementById('appt-location').value,
-      date: d,
-      note: document.getElementById('appt-note').value
-    });
-    document.getElementById('appt-note').value = '';
-  };
-
-  const bizCol = collection(db, "businesses");
-  onSnapshot(bizCol, (snapshot) => {
-    const grid = document.getElementById('business-grid');
-    grid.innerHTML = '';
-    snapshot.forEach(docSnap => {
-      const b = docSnap.data();
-      const card = document.createElement('div');
-      card.className = 'data-card paper';
-      card.innerHTML = `
-        <div class="card-title">${b.name}</div>
-        <div style="font-size:15px;">
-            <strong>Inhaber:</strong> ${b.owner}<br>
-            <strong>Anschrift:</strong> ${b.address}<br>
-            <strong>Art:</strong> ${b.type}
-        </div>
-        <button onclick="window.delDoc('businesses','${docSnap.id}')" style="background:none; border:none; color:#8c2d1f; cursor:pointer; font-size:11px; margin-top:15px; text-transform:uppercase;">[ Lizenz entziehen ]</button>
-      `;
-      grid.appendChild(card);
-    });
-  });
-
-  document.getElementById('btn-add-business').onclick = () => document.getElementById('modal-business').classList.add('open');
-  document.getElementById('btn-save-business').onclick = async () => {
-    await addDoc(bizCol, {
-      name: document.getElementById('b-name').value,
-      owner: document.getElementById('b-owner').value,
-      address: document.getElementById('b-address').value,
-      type: document.getElementById('b-type').value
-    });
-    closeModal('modal-business');
-    document.querySelectorAll('#modal-business input').forEach(i => i.value = '');
-  };
-
-  window.delDoc = async (coll, id) => {
-    if(confirm("Möchten Sie diesen Eintrag wirklich dauerhaft aus den Akten löschen?")) {
-        await deleteDoc(doc(db, coll, id));
-    }
-  };
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
